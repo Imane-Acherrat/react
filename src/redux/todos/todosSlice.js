@@ -4,7 +4,7 @@ import { fetchTodos } from "./todosThunks";
 const todosSlice = createSlice({
     name: "todos",
     initialState: {
-        todos: [],
+        items: [],
         status: "idle", // idle | loading | succeeded | failed
         error: null,
     },
@@ -19,19 +19,19 @@ const todosSlice = createSlice({
                 title: action.payload,
                 completed: false,
             };
-            state.todos.push(newTodo);
+            state.items.push(newTodo);
         },
 
         // Supprimer une tâche
         deleteTodo: (state, action) => {
-            state.todos = state.todos.filter(
+            state.items = state.items.filter(
                 (todo) => todo.id !== action.payload
             );
         },
 
         // Modifier le statut d'une tâche (toggle completed)
         toggleTodo: (state, action) => {
-            const todo = state.todos.find(
+            const todo = state.items.find(
                 (t) => t.id === action.payload
             );
             if (todo) {
@@ -46,7 +46,7 @@ const todosSlice = createSlice({
             })
             .addCase(fetchTodos.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.todos = action.payload;
+                state.items = action.payload;
             })
             .addCase(fetchTodos.rejected, (state, action) => {
                 state.status = "failed";

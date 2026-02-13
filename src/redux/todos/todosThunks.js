@@ -8,6 +8,7 @@ export const fetchTodos = createAsyncThunk(
         const response = await axios.get(
             "https://jsonplaceholder.typicode.com/users/1/todos"
         );
-        return response.data.todos;
+        console.log(response.data)
+        return response.data;
     }
 );
