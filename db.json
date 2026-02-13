@@ -1,0 +1,20 @@
+{
+    "candidatures": [
+        {
+            "id": 1,
+            "company": "CMC",
+            "position": "Developer",
+            "location": "CS",
+            "status": "Applied",
+            "salaryExpected": 8000
+        },
+        {
+            "id": 2,
+            "company": "CMC",
+            "position": "Developer",
+            "location": "CS",
+            "status": "Rejected",
+            "salaryExpected": 8000
+        }
+    ]
+}
