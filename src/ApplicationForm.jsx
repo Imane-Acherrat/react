@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addCandidature } from "./redux/actions"
 
-export default function ApplicationForm({ setCandidatures }) {
+export default function ApplicationForm() {
     const [formData, setFormData] = useState({
         id: Date.now(),
         company: "",
@@ -9,10 +11,10 @@ export default function ApplicationForm({ setCandidatures }) {
         location: "",
         status: "Applied"
     })
-
+    const dispatch = useDispatch()
     const handleSubmit = (e) => {
         e.preventDefault()
-        setCandidatures(prev => [...prev, formData])
+        dispatch(addCandidature(formData))
 
         setFormData({
             id: Date.now(),

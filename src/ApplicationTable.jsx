@@ -1,15 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteCandidature, updateCandidature } from "./redux/actions";
 
-export default function ApplicationTable({ setCandidatures, candidatures }) {
-
+export default function ApplicationTable() {
+    const candidatures = useSelector(state => state)
+    const dispatch = useDispatch()
     const handleDelete = (id) => {
-        setCandidatures(prev => prev.filter(el => el.id !== id))
+        dispatch(deleteCandidature(id))
     }
     const handleStatusChange = (id, newStatus) => {
-        setCandidatures(prev => prev.map(el => el.id === id ? {
-            ...el, status: newStatus
-        } : el))
+        dispatch(updateCandidature({ id: id, status: newStatus }))
+
     }
     return <div>
         <table border={1}>
