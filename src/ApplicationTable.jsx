@@ -12,10 +12,10 @@ export default function ApplicationTable({ setCandidatures, candidatures }) {
         } : el))
     }
     return <div>
-        <table>
+        <table border={1}>
             <thead>
                 <tr>
-                    <td> Company </td><td> Position </td><td> Location </td><td> Status </td><td> Salary </td><td> Actions </td>
+                    <th> Company </th><th> Position </th><th> Location </th><th> Status </th><th> Salary </th><th> Actions </th>
                 </tr>
             </thead>
             <tbody>
