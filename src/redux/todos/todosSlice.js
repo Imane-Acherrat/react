@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchTodos } from "./todosThunks";
 
 const todosSlice = createSlice({
     name: "todos",
@@ -37,7 +38,21 @@ const todosSlice = createSlice({
                 todo.completed = !todo.completed;
             }
         },
-    }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchTodos.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(fetchTodos.fulfilled, (state, action) => {
+                state.status = "succeeded";
+                state.todos = action.payload;
+            })
+            .addCase(fetchTodos.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.error.message;
+            });
+    },
 });
 
 export const { addTodo, deleteTodo, toggleTodo } = todosSlice.actions;
